@@ -32,7 +32,7 @@ public class AfishaRepositoryTest {
     }
 
     @Test
-    public void shouldAddnewFilms() {
+    public void shouldAddNewFilms() {
         AfishaRepository repo = new AfishaRepository();
         repo.save(item1);
         repo.save(item2);

@@ -7,6 +7,7 @@ public class FilmsManagerTest {
     AfishaRepository repo = new AfishaRepository();
     FilmsManager manager = new FilmsManager(repo);
 
+
     Afisha item1 = new Afisha(1, "Бладшот", "боевик", "url1");
     Afisha item2 = new Afisha(2, "Вперед", "мультфильм", "url2");
     Afisha item3 = new Afisha(3, "Отель Белград", "комедия", "url3");
@@ -44,9 +45,18 @@ public class FilmsManagerTest {
     }
 
     @Test
-    public void shouldShowLastAddedFilmsReversed() {
+    public void shouldShowLastAddedFilmsReversedDeafault() {
         Afisha[] expected = {item10, item11, item9, item8, item7, item6, item5, item4, item3, item2};
-        Afisha[] actual = manager.getLastItems();
+        Afisha[] actual = manager.getLastItemsbyDefault();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    public void shouldShowLastFiveAddedFilmsReversed() {
+        Afisha[] expected = {item10, item11, item9, item8};
+        Afisha[] actual = manager.getLastItems(4);
 
         Assertions.assertArrayEquals(expected, actual);
     }

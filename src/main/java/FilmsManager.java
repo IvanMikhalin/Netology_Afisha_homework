@@ -19,12 +19,19 @@ public class FilmsManager {
         return reversed;
     }
 
-    public Afisha[] getLastItems() {
-        int maxArrLenght = 0;
+    public Afisha[] getLastItems(int maxArrLenght) {
         Afisha[] findAll = repo.getItems();
-        if (findAll.length > 10) {
-            maxArrLenght = 10;
+        Afisha[] reversed = new Afisha[maxArrLenght];
+
+        for (int i = 0; i < reversed.length; i++) {
+            reversed[i] = findAll[findAll.length - 1 - i];
         }
+        return reversed;
+    }
+
+    public Afisha[] getLastItemsbyDefault() {
+        int maxArrLenght = 10;
+        Afisha[] findAll = repo.getItems();
         Afisha[] reversed = new Afisha[maxArrLenght];
 
         for (int i = 0; i < reversed.length; i++) {
