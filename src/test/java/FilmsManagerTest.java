@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class FilmsManagerTest {
 
-    AfishaRepository repo = new AfishaRepository();
-    FilmsManager manager = new FilmsManager(repo);
+    FilmsManager manager = new FilmsManager();
 
 
     Afisha item1 = new Afisha(1, "Бладшот", "боевик", "url1");
@@ -22,31 +21,32 @@ public class FilmsManagerTest {
 
     @BeforeEach
     public void setup() {
-        manager.add(item1);
-        manager.add(item2);
-        manager.add(item3);
-        manager.add(item4);
-        manager.add(item5);
-        manager.add(item6);
-        manager.add(item7);
-        manager.add(item8);
-        manager.add(item9);
-        manager.add(item11);
-        manager.add(item10);
 
-    }
-
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+        manager.save(item6);
+        manager.save(item7);
+        manager.save(item8);
+        manager.save(item9);
+        manager.save(item11);
+}
     @Test
     public void shouldShowAllTheFilmsReversed() {
-        Afisha[] expected = {item10, item11, item9, item8, item7, item6, item5, item4, item3, item2, item1};
-        Afisha[] actual = manager.getItems();
+
+        Afisha[] expected = {item11, item9, item8, item7, item6, item5, item4, item3, item2, item1};
+        Afisha[] actual = manager.getItemsReversed();
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldShowLastAddedFilmsReversedDeafault() {
-        Afisha[] expected = {item10, item11, item9, item8, item7, item6, item5, item4, item3, item2};
+
+
+        Afisha[] expected = {item11, item9, item8, item7, item6, item5, item4, item3, item2, item1};
         Afisha[] actual = manager.getLastItemsbyDefault();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -54,10 +54,33 @@ public class FilmsManagerTest {
 
 
     @Test
-    public void shouldShowLastFiveAddedFilmsReversed() {
-        Afisha[] expected = {item10, item11, item9, item8};
+    public void shouldShowLastFourAddedFilmsReversed() {
+
+        Afisha[] expected = {item11, item9, item8, item7};
         Afisha[] actual = manager.getLastItems(4);
 
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDeleteFilmsById() {
+
+        manager.removeById(item2.getId());
+        manager.removeById(item5.getId());
+
+        Afisha[] expected = {item1, item3, item4, item6, item7, item8, item9, item11};
+        Afisha[] actual = manager.getItems();
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldAddNewFilms() {
+        manager.save(item10);
+
+        Afisha[] expected = {item1, item2, item3, item4, item5, item6, item7, item8, item9, item11, item10};
+        Afisha[] actual = manager.getItems();
+        Assertions.assertArrayEquals(expected, actual);
+
     }
 }

@@ -3,7 +3,7 @@ public class Afisha {
     private int id;
     private String name;
     private String genre;
-    private String url; //for logo
+    private String url;
 
     public Afisha(int id, String name, String genre, String url) {
         this.id = id;
@@ -15,5 +15,4 @@ public class Afisha {
     public int getId() {
         return id;
     }
-
 }

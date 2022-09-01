@@ -1,16 +1,30 @@
 public class FilmsManager {
-    private AfishaRepository repo;
 
-    public FilmsManager(AfishaRepository repo) {
-        this.repo = repo;
+    private Afisha[] items = new Afisha[0];
+
+    public void save(Afisha item) {
+        Afisha[] tmp = new Afisha[items.length + 1];
+        for (int i = 0; i < items.length; i++) {
+            tmp[i] = items[i];
+        }
+        tmp[tmp.length - 1] = item;
+        items = tmp;
     }
 
-    public void add(Afisha item) {
-        repo.save(item);
+    public void removeById(int id) {
+        Afisha[] tmp = new Afisha[items.length - 1];
+        int copyToIndex = 0;
+        for (Afisha item : items) {
+            if (item.getId() != id) {
+                tmp[copyToIndex] = item;
+                copyToIndex++;
+            }
+        }
+        items = tmp;
     }
 
-    public Afisha[] getItems() {
-        Afisha[] findAll = repo.getItems();
+    public Afisha[] getItemsReversed() {
+        Afisha[] findAll = getItems();
         Afisha[] reversed = new Afisha[findAll.length];
 
         for (int i = 0; i < reversed.length; i++) {
@@ -19,8 +33,12 @@ public class FilmsManager {
         return reversed;
     }
 
+        public Afisha[] getItems() {
+        return items;
+    }
+
     public Afisha[] getLastItems(int maxArrLenght) {
-        Afisha[] findAll = repo.getItems();
+        Afisha[] findAll = getItems();
         Afisha[] reversed = new Afisha[maxArrLenght];
 
         for (int i = 0; i < reversed.length; i++) {
@@ -30,8 +48,8 @@ public class FilmsManager {
     }
 
     public Afisha[] getLastItemsbyDefault() {
-        int maxArrLenght = 10;
-        Afisha[] findAll = repo.getItems();
+        int maxArrLenght = 10; //default
+        Afisha[] findAll = getItems();
         Afisha[] reversed = new Afisha[maxArrLenght];
 
         for (int i = 0; i < reversed.length; i++) {
