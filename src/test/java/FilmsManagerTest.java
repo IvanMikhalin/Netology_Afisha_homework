@@ -32,7 +32,8 @@ public class FilmsManagerTest {
         manager.save(item9);
         manager.save(item11);
 
-}
+    }
+
     @Test
     public void shouldShowAllTheFilmsReversed() {
 
@@ -69,16 +70,16 @@ public class FilmsManagerTest {
         Afisha item9 = new Afisha(9, "Груз 200", "комедия", "url9");
         Afisha item11 = new Afisha(11, "Жесть", "комедия", "url11");
 
-            manager.save(item1);
-            manager.save(item2);
-            manager.save(item3);
-            manager.save(item4);
-            manager.save(item5);
-            manager.save(item6);
-            manager.save(item7);
-            manager.save(item8);
-            manager.save(item9);
-            manager.save(item11);
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+        manager.save(item6);
+        manager.save(item7);
+        manager.save(item8);
+        manager.save(item9);
+        manager.save(item11);
 
         Afisha[] expected = {item11, item9, item8, item7};
         Afisha[] actual = manager.getLastItems();

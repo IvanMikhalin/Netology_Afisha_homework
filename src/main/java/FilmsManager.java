@@ -46,15 +46,6 @@ public class FilmsManager {
         return items;
     }
 
-//    public Afisha[] getLastItems(int maxArrLenght) {
-//        Afisha[] reversed = new Afisha[maxArrLenght];
-//
-//        for (int i = 0; i < reversed.length; i++) {
-//            reversed[i] = items[items.length - 1 - i];
-//        }
-//        return reversed;
-//    }
-
     public Afisha[] getLastItems() {
 
         int maxArrayLenght;
