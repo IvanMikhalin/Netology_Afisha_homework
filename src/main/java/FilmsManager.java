@@ -1,6 +1,15 @@
 public class FilmsManager {
 
     private Afisha[] items = new Afisha[0];
+    int limit;
+
+    public FilmsManager() {
+        limit = 10;
+    }
+
+    public FilmsManager(int limit) {
+        this.limit = limit;
+    }
 
     public void save(Afisha item) {
         Afisha[] tmp = new Afisha[items.length + 1];
@@ -33,27 +42,31 @@ public class FilmsManager {
         return reversed;
     }
 
-        public Afisha[] getItems() {
+    public Afisha[] getItems() {
         return items;
     }
 
-    public Afisha[] getLastItems(int maxArrLenght) {
-        Afisha[] findAll = getItems();
-        Afisha[] reversed = new Afisha[maxArrLenght];
+//    public Afisha[] getLastItems(int maxArrLenght) {
+//        Afisha[] reversed = new Afisha[maxArrLenght];
+//
+//        for (int i = 0; i < reversed.length; i++) {
+//            reversed[i] = items[items.length - 1 - i];
+//        }
+//        return reversed;
+//    }
 
-        for (int i = 0; i < reversed.length; i++) {
-            reversed[i] = findAll[findAll.length - 1 - i];
+    public Afisha[] getLastItems() {
+
+        int maxArrayLenght;
+        if (items.length < limit) {
+            maxArrayLenght = items.length;
+        } else {
+            maxArrayLenght = limit;
         }
-        return reversed;
-    }
-
-    public Afisha[] getLastItemsbyDefault() {
-        int maxArrLenght = 10; //default
-        Afisha[] findAll = getItems();
-        Afisha[] reversed = new Afisha[maxArrLenght];
+        Afisha[] reversed = new Afisha[maxArrayLenght];
 
         for (int i = 0; i < reversed.length; i++) {
-            reversed[i] = findAll[findAll.length - 1 - i];
+            reversed[i] = items[items.length - 1 - i];
         }
         return reversed;
     }
