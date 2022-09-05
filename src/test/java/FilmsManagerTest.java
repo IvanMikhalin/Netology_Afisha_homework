@@ -108,4 +108,30 @@ public class FilmsManagerTest {
         Assertions.assertArrayEquals(expected, actual);
 
     }
+
+    @Test
+    public void shouldShowLastFilmsIfLessThenTen() {
+
+        FilmsManager manager = new FilmsManager();
+
+        Afisha item1 = new Afisha(1, "Бладшот", "боевик", "url1");
+        Afisha item2 = new Afisha(2, "Вперед", "мультфильм", "url2");
+        Afisha item3 = new Afisha(3, "Отель Белград", "комедия", "url3");
+        Afisha item4 = new Afisha(4, "Джентельмены", "боевик", "url4");
+        Afisha item5 = new Afisha(5, "Человек невидимка", "ужасы", "url5");
+
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+
+
+        Afisha[] expected = {item5, item4, item3, item2, item1};
+        Afisha[] actual = manager.getLastItems();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
 }
